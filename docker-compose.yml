@@ -4,6 +4,7 @@ services:
   telegraf:
     image: telegraf:1.18-alpine
     hostname: telegraf-1
+    container_name: telegraf-1
     volumes:
       - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock:rw
@@ -16,6 +17,8 @@ services:
 
   influxdb:
     image: influxdb:1.8-alpine
+    hostname: influxdb-1
+    container_name: influxdb-1
     env_file: configuration.env
     ports:
       - '8086:8086'
@@ -25,6 +28,8 @@ services:
 
   grafana:
     image: grafana/grafana:8.0.2
+    hostname: grafana-1
+    container_name: grafana-1
     depends_on:
       - influxdb
     env_file: configuration.env
@@ -40,6 +45,7 @@ services:
   mongo:
     image: mongo
     hostname: mongodb-1
+    container_name: mongodb-1
     ports:
       - "27017:27017"
     env_file: configuration.env
@@ -47,6 +53,7 @@ services:
   elasticsearch:
     image: elasticsearch:8.1.1
     hostname: elasticsearch-1
+    container_name: elasticsearch-1
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -55,6 +62,7 @@ services:
   nginx:
     image: nginx:latest
     hostname: nginx-1
+    container_name: nginx-1
     ports:
       - "8080:80"
     env_file: configuration.env
@@ -64,6 +72,7 @@ services:
   app:
     image: php:8.1-fpm
     hostname: app-1
+    container_name: app-1
     ports:
       - "9000:9000"
     env_file: configuration.env
