@@ -36,7 +36,7 @@ services:
     links:
       - influxdb
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
@@ -48,6 +48,14 @@ services:
     container_name: mongodb-1
     ports:
       - "27017:27017"
+    env_file: configuration.env
+
+  mysql:
+    image: mysql:5.7
+    hostname: mysql-1
+    container_name: mysql-1
+    ports:
+      - "3306:3306"
     env_file: configuration.env
 
   elasticsearch:
