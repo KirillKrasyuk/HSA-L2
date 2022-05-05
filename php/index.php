@@ -2,12 +2,12 @@
 
 phpinfo();
 
-$servername = "0.0.0.0";
-$username = "admin";
-$password = "admin";
-
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=db", $username, $password);
+    $conn = new PDO(
+        "mysql:host=mysql;dbname=db",
+        'admin',
+        'admin'
+    );
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     echo "Connected successfully";
